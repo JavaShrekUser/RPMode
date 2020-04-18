@@ -11,6 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('starfield2', './assets/starfield2.png');
         this.load.image('starfield3', './assets/starfield3.png');
         this.load.image('starfield4', './assets/starfield4.png');
+        this.load.image('clownfish',  './assets/ClownFish.png');
         this.load.image('yard', './assets/yard.png');
         this.load.spritesheet('explosion','./assets/explosion.png',
         {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -59,6 +60,8 @@ class Play extends Phaser.Scene {
         this.ship02 = new Spaceship(this, game.config.width + 96, 196, 'spaceship', 0, 20).
         setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, 260, 'spaceship', 0, 10).
+        setOrigin(0,0);
+        this.fish04 = new ClownFish(this, game.config.width + 130, 160, 'clownfish', 0, 50).
         setOrigin(0,0);
 
         //define keyboard keys
@@ -135,10 +138,15 @@ class Play extends Phaser.Scene {
             this.ship01.update(); 
             this.ship02.update();
             this.ship03.update();
+            this.fish04.update();
         }
         
 
         //check collision
+        if(this.checkCollision(this.p1Rocket, this.fish04)){
+            this.p1Rocket.reset();
+            this.shipExplode(this.fish04);
+        }
         if(this.checkCollision(this.p1Rocket, this.ship03)){
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
