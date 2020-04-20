@@ -18,11 +18,14 @@
 
 *Create a new spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (25)
 
-*50 + 10 + 15 + 15 + 25 = 115
+*Allow the player to control the Rocket after it's fired (10)
+ (Seems weird in my game, but I like to get this point)
+
+*50 + 10 + 15 + 15 + 25 + 10 = 125
 
 ***************************************************************************************************************
 
-I did extra work to get extra 15 points. I know there is not extra credits, but it's just a backup that 
+I did extra work to get extra 25 points. I know there is not extra credits, but it's just a backup that 
 ensures that I can still get 100 points if I didn't do enough or do well in some parts.
 
 ***************************************************************************************************************
