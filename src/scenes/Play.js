@@ -36,12 +36,6 @@ class Play extends Phaser.Scene {
         setOrigin(0,0);
         this.yard = this.add.tileSprite(0, 0, 640, 480, 'yard').
         setOrigin(0,0);
-       
-
-        //white rectangle borders
-
-        //green UI background
-    
      
         //new green ui
         this.UI =  this.add.tileSprite(46, 18, 551, 64, 'UI').
@@ -62,7 +56,7 @@ class Play extends Phaser.Scene {
         setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width - 190, 260, 'spaceship', 0, 10).
         setOrigin(0,0);
-        this.fish04 = new ClownFish(this, game.config.width + 130, 160, 'clownfish', 0, 50).
+        this.fish04 = new ClownFish(this, game.config.width - 80, 160, 'clownfish', 0, 50).
         setOrigin(0,0);
 
         //define keyboard keys
@@ -94,32 +88,21 @@ class Play extends Phaser.Scene {
             fixedWidth: 50
         }
         this.scoreLeft = this.add.text(133, 30, this.p1Score, scoreConfig);
-
+        
+        //typeface for ending
         let endConfig = {
             fontFamily: 'fantasy',
             fontSize: '28px',
-            backgroundColor: '#00000000',
-            color: '#00000',
+            backgroundColor: '#5DDEDE',
+            color: '#000000',
             align: 'right',
             padding: {
                 top:5,
-                bottom:5.
+                bottom:5,
             },
-            fixedWidth: 50
+            fixedWidth: 100
         }
 
-        let menuConfig = {
-            fontFamily: 'serif',
-            fontSize: '28px',
-            backgroundColor: '#00000000',
-            color: '#E0FFF6',
-            align: 'right',
-            padding: {
-                top:5,
-                bottom:5.
-            },
-            fixedWidth: 50
-        }
 
         //visible timer
         this.visibleTimer = this.add.text(531, 30, '', scoreConfig).setOrigin(1,0);
@@ -138,10 +121,10 @@ class Play extends Phaser.Scene {
         this.gameOver = false;
 
         //60S play clock
-        scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(game.settings.gameTimer, () =>{
-            this.add.text(game.config.width/2, game.config.height/2, 'Game Over', endConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, ' Press (F) to Restart or ←for Menu', endConfig). setOrigin(0.5);
+        endConfig.fixedWidth = 0;
+        this.clock = this.time.delayedCall(game.settings.gameTimer, () =>{  
+            this.add.text(game.config.width/2, game.config.height/2 - 60, 'Game Over', endConfig).setOrigin(0.5); 
+            this.add.text(game.config.width/2, game.config.height/2 + 64 - 60, 'Press  (F)  to  Restart  or  ←  for  Menu', endConfig). setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
         
@@ -201,10 +184,10 @@ class Play extends Phaser.Scene {
     }
 
     checkCollision(rocket, ship){
-        if (rocket.x < ship.x + ship.width &&
-            rocket.x + rocket.width > ship.x &&
+        if (rocket.x+30 < ship.x + ship.width &&
+            rocket.x-30 + rocket.width > ship.x &&
             rocket.y < ship.y + ship.height &&
-            rocket.height + rocket.y > ship.y){
+            rocket.height + rocket.y > ship.y-15){
                 return true;
             }else{
                 return false;
