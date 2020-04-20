@@ -185,8 +185,8 @@ class Play extends Phaser.Scene {
 
     checkCollision(rocket, ship){
         if (rocket.x < ship.x + ship.width &&
-            rocket.x + rocket.width > ship.x &&
-            rocket.y < ship.y + ship.height &&
+            rocket.x + rocket.width/3 > (ship.x) &&
+            rocket.y < ship.y + ship.height/2 &&
             rocket.height + rocket.y > ship.y){
                 return true;
             }else{
@@ -204,7 +204,7 @@ class Play extends Phaser.Scene {
         boom.anims.play('explode');             //play explode animation
         boom.on('animationcomplete', ()=>{      //callback after animation complete
             ship.reset();                       //reset ship position
-            ship.alpha = 1;                     //make ship visible again
+            ship.alpha = 1;                         //make ship visible again
             boom.destroy();                     //remove explosion sprite
         });
         //score increment and repaint
