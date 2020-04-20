@@ -10,7 +10,7 @@ class ClownFish extends Phaser.GameObjects.Sprite{
         //move ClownFish left faster than Fish
         this.x -= game.settings.spaceshipSpeed+1.5;
         //wraparound screen bound
-        if(this.x <= 80 - this.width){
+        if(this.x <= 50 - this.width){
             this.reset();
         }
     }
